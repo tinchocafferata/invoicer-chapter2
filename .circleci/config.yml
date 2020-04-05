@@ -1,5 +1,14 @@
-version: 2
+version: 2.1
+orbs:
+  awscli: appfolio/awscli@x.y
 jobs:
+ awscli-example:
+   executor: awscli/default
+   steps:
+     - checkout
+     - awscli/setup:
+         profile-name: circleci
+     - run: echo "Run your code here"
  build:
   # Variable expansion in working_directory not supported at this time ((new content 2))
   # You will need to modify the code below to reflect your github account/repo setup
