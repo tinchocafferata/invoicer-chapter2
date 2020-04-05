@@ -40,8 +40,6 @@ jobs:
           github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
 
    - deploy:
-      - aws-cli/setup:
-         profile-name: circleci
          
        command: |
          if [ "${CIRCLE_BRANCH}" == "master" ]; then
