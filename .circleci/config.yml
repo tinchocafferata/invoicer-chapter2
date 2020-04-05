@@ -15,7 +15,7 @@ jobs:
    - aws-cli/setup:
          profile-name: circleci
          
-   - run: echo "Run your code hereee"      
+   - run: echo "aws s3 ls"      
    - run: 
       name: Setup environment
       command: |
