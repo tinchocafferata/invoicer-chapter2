@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 orbs:
   aws-cli: circleci/aws-cli@1.0.0
 jobs:
@@ -28,7 +28,7 @@ jobs:
        else
          dr=$DOCKER_USER
        fi
-       cat >> $BASH_ENV \<\< EOF
+       cat >> $BASH_ENV << EOF
        export GOPATH_HEAD="$(echo ${GOPATH}|cut -d ':' -f 1)"
        export GOPATH_BASE="$(echo ${GOPATH}|cut -d ':' -f 1)${gb}"
        export DOCKER_REPO="$dr"
