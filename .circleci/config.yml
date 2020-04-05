@@ -1,12 +1,12 @@
 version: 2.1
 orbs:
-  awscli: appfolio/awscli@x.y
+  aws-cli: circleci/aws-cli@1.0.0
 jobs:
  awscli-example:
-   executor: awscli/default
+   executor: aws-cli/default
    steps:
      - checkout
-     - awscli/setup:
+     - aws-cli/setup:
          profile-name: circleci
      - run: echo "Run your code hereee"
  build:
