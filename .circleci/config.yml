@@ -40,6 +40,9 @@ jobs:
           github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
 
    - deploy:
+      - aws-cli/setup:
+         profile-name: circleci
+         
        command: |
          if [ "${CIRCLE_BRANCH}" == "master" ]; then
            docker login -u ${DOCKER_USER} -p ${DOCKER_PASS};
@@ -51,4 +54,5 @@ jobs:
            docker images --no-trunc | awk '/^app/ {print $3}' | \
              sudo tee $CIRCLE_ARTIFACTS/docker-image-shasum256.txt;
            docker push ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME};
+           aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api
          fi
