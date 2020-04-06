@@ -9,6 +9,8 @@ jobs:
   executor: aws-cli/default
   docker:
    - image: circleci/golang:1.10
+   environment:
+    TERM: xterm-256color
   steps:
    - checkout
    - setup_remote_docker
@@ -16,7 +18,7 @@ jobs:
          profile-name: circleci
          
    - run: sudo apt-get update && sudo apt-get install -yy less      
-   - run: yes "" | aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api     
+   - run: aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api     
    - run: 
       name: Setup environment
       command: |
