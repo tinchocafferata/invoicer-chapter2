@@ -17,7 +17,7 @@ jobs:
    - run:
       name: "testing beanstalk deploy"
       environment:
-         TERM: ansi
+         TERM: xterm-color
       command: |
        sudo apt-get update && sudo apt-get install -yy less && aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api
    - run: 
