@@ -15,7 +15,7 @@ jobs:
    - aws-cli/setup:
          profile-name: circleci
          
-   - run: sudo apt-get update && sudo apt-get install -yy less      
+   - run: apt-get install -yy less      
    - run: aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api     
    - run: 
       name: Setup environment
