@@ -18,9 +18,7 @@ jobs:
    - run: export TERM=dumb
    - run: 
       name: "Testing Beanstalk Deploy"
-      environment:
-       TERM: dumb
-      command: /bin/sh $(aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api)
+      command: export TERM=dumb && aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api
 
    - run: 
       name: Setup environment
