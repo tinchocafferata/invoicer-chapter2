@@ -19,9 +19,7 @@ jobs:
       environment:
          TERM: ansi
       command: |
-       sudo apt-get update && sudo apt-get install -yy less && |
-       aws elasticbeanstalk update-environment --application-name invoicer |
-       --environment-id e-ybjw8c5g9f --version-label invoicer-api
+       sudo apt-get update && sudo apt-get install -yy less && aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api
    - run: 
       name: Setup environment
       command: |
