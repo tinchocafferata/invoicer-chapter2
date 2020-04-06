@@ -9,7 +9,7 @@ jobs:
   executor: aws-cli/default
   docker:
    - image: circleci/golang:1.10
-   - environment:
+   environment:
       TERM: ansi
   steps:
    - checkout
