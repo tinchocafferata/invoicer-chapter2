@@ -9,6 +9,8 @@ jobs:
   # executor: aws-cli/default
   docker:
    - image: circleci/golang:1.10
+     #The awscli beanstalk command freezes waiting for user input and the job
+     #never finishes, this environment variable must be set to prevent that
      environment: 
       PAGER: cat
   steps:
@@ -16,11 +18,11 @@ jobs:
    - setup_remote_docker
    - aws-cli/setup:
          profile-name: circleci
-   - run: sudo apt-get update && sudo apt-get install -yy less
-   - run: export TERM=dumb
-   - run: 
-      name: "Testing Beanstalk Deploy"
-      command: export TERM=dumb && aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api
+   
+   #- run: sudo apt-get update && sudo apt-get install -yy less
+   #- run: 
+   #   name: "Testing Beanstalk Deploy"
+   #   command: export TERM=dumb && aws elasticbeanstalk update-environment --application-name invoicer --environment-id e-ybjw8c5g9f --version-label invoicer-api
 
    - run: 
       name: Setup environment
@@ -56,4 +58,8 @@ jobs:
            docker images --no-trunc | awk '/^app/ {print $3}' | \
              sudo tee $CIRCLE_ARTIFACTS/docker-image-shasum256.txt;
            docker push ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME};
+           sudo apt-get update && sudo apt-get install -yy less;
+           export TERM=dumb && aws elasticbeanstalk update-environment \
+            --application-name invoicer --environment-id e-ybjw8c5g9f \
+            --version-label invoicer-api;
          fi
