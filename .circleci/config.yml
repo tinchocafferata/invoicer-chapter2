@@ -9,8 +9,8 @@ jobs:
   executor: aws-cli/default
   docker:
    - image: circleci/golang:1.10
-   environment:
-      TERM: ansi
+  environment:
+   TERM: ansi
   steps:
    - checkout
    - setup_remote_docker
